@@ -27,6 +27,7 @@ class HTMLFilter implements Filter {
     @Override
     public boolean doFilter(Request request, Response response, FilterChain chain) {
         request.str = request.str.replaceAll("<", "[").replaceAll(">", "]") + "HTMLFilter()";
+        //调用责任链上下一个filter的doFilter()方法
         chain.doFilter(request, response, chain);
         response.str += "--HTMLFilter()";
         return true;
